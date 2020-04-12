@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://unpkg.com/konva@4.2.2/konva.min.js"></script>
+  <meta charset="utf-8" />
+  <title>Konva Animals on the Beach Game Demo</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container"></div>
+  <script>
+    var stage = new Konva.Stage({
+      container: 'container',
+      width: 578,
+      height: 530
+    });
+    var background = new Konva.Layer();
+    stage.add(background)
+
+    var bkimage = new Image();
+    bkimage.src = 'assets/beach.png';
+    bkimage.onload = function () {
+      var context = background.getContext()
+      context.drawImage(bkimage, 0, 0);
+    };
+
+    var animalLayer = new Konva.Layer();
+    var monkeyPos = { x: 275, y: 70 }
+    var monkey = new Image();
+    monkey.src = 'assets/monkey.png';
+    monkey.onload = function () {
+      var monkeyImg = new Konva.Image({
+        image: monkey,
+        x: monkeyPos.x,
+        y: monkeyPos.y,
+      });
+      animalLayer.add(monkeyImg)
+      stage.add(animalLayer);
+    };
+
+  </script>
+</body>
+
+</html>
