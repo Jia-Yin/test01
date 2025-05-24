@@ -1,11 +1,13 @@
-/* Chinese-styled RWD CSS */
+/* Cute Chinese-styled RWD CSS */
 :root {
-  --primary-color: #c02d28;
-  --secondary-color: #e5c884;
-  --bg-color: #f9f3e5;
-  --text-color: #333333;
-  --border-color: #c02d28;
-  --accent-color: #497649;
+  --primary-color: #ff6b6b;
+  --secondary-color: #ffd56b;
+  --bg-color: #fff9e9;
+  --text-color: #5d534f;
+  --border-color: #ff8e8e;
+  --accent-color: #86c4ba;
+  --cute-pink: #ffb7d5;
+  --cute-blue: #a1d6e2;
 }
 
 * {
@@ -21,7 +23,7 @@ body {
   text-align: center;
   margin: 0;
   padding: 10px;
-  background-image: url('https://i.imgur.com/DGTxWxR.jpg');
+  background-image: url('https://i.imgur.com/U3OGLDs.jpg');
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -34,7 +36,7 @@ h1 {
   font-weight: normal;
   position: relative;
   letter-spacing: 1px;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  text-shadow: 2px 2px 0 rgba(255,183,213,0.3);
 }
 
 h1::after {
@@ -42,30 +44,31 @@ h1::after {
   display: block;
   width: 80%;
   max-width: 300px;
-  height: 2px;
-  background-color: var(--primary-color);
+  height: 4px;
+  background: linear-gradient(90deg, var(--cute-pink), var(--primary-color), var(--cute-pink));
+  border-radius: 4px;
   margin: 15px auto 0;
 }
 
 h1::before, h1::after {
-  content: "❖";
+  content: "✿";
   display: inline-block;
   position: relative;
   top: -0.5rem;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: var(--primary-color);
   margin: 0 15px;
 }
 
 .container {
   background-color: rgba(255, 255, 255, 0.92);
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(255, 107, 107, 0.2);
   padding: clamp(15px, 5vw, 40px);
   width: 90%;
   max-width: 800px;
   margin: clamp(10px, 5vh, 40px) auto;
-  border: 2px solid var(--border-color);
+  border: 3px solid var(--border-color);
   position: relative;
   overflow: hidden;
 }
@@ -76,35 +79,47 @@ h1::before, h1::after {
   top: 0;
   left: 0;
   right: 0;
-  height: 5px;
-  background: linear-gradient(90deg, var(--secondary-color), var(--primary-color), var(--secondary-color));
+  height: 8px;
+  background: linear-gradient(90deg, var(--cute-blue), var(--cute-pink), var(--cute-blue));
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 
 #demo-area-01-show {
   display: block;
   font-size: clamp(1.2rem, 4vw, 1.8rem);
-  padding: clamp(10px, 3vw, 20px);
-  background-color: #fafafa;
+  padding: clamp(15px, 3vw, 25px);
+  background-color: #fffdfa;
   border: 2px solid var(--border-color);
-  border-radius: 10px;
+  border-radius: 20px;
   margin: 20px auto;
   min-height: 30px;
   width: 90%;
   max-width: 400px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.15);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
-#demo-area-01-show::after {
-  content: '';
+#demo-area-01-show::before {
+  content: '♡';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(to right, transparent, var(--secondary-color), transparent);
+  top: 5px;
+  left: 10px;
+  font-size: 0.8rem;
+  color: var(--cute-pink);
+  opacity: 0.7;
+}
+
+#demo-area-01-show::after {
+  content: '♡';
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  font-size: 0.8rem;
+  color: var(--cute-pink);
+  opacity: 0.7;
 }
 
 .bingo {
@@ -112,44 +127,93 @@ h1::before, h1::after {
   font-size: clamp(1.8rem, 5vw, 2.8rem);
   font-weight: bold;
   animation: pulse 1.5s infinite;
-  text-shadow: 0 0 5px rgba(192, 45, 40, 0.3);
+  text-shadow: 0 0 8px rgba(255, 107, 107, 0.5);
+  background-image: linear-gradient(120deg, var(--cute-pink), var(--primary-color), var(--cute-pink));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.flash {
+  animation: flash 0.4s infinite alternate;
+  z-index: 10;
+  position: relative;
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
+  0% { transform: scale(1) rotate(-2deg); }
+  25% { transform: scale(1.05) rotate(0deg); }
+  50% { transform: scale(1.1) rotate(2deg); }
+  75% { transform: scale(1.05) rotate(0deg); }
+  100% { transform: scale(1) rotate(-2deg); }
+}
+
+@keyframes flash {
+  0% {
+    color: var(--primary-color);
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 25px rgba(255, 107, 107, 0.9), 0 0 40px rgba(255, 183, 213, 0.7);
+    border-color: var(--cute-pink);
+    transform: scale(1.05);
+  }
+  100% {
+    color: white;
+    background-color: var(--primary-color);
+    box-shadow: 0 0 35px rgba(255, 107, 107, 1), 0 0 60px rgba(255, 183, 213, 0.9);
+    border-color: white;
+    transform: scale(1.15);
+  }
 }
 
 .spirit {
-  width: clamp(60px, 15vw, 120px);
-  margin: 10px auto;
-  opacity: 0.9;
-  transition: transform 0.3s ease;
+  width: clamp(80px, 18vw, 140px);
+  margin: 15px auto;
+  opacity: 0.95;
+  transition: all 0.5s ease;
+  filter: drop-shadow(0 5px 15px rgba(255, 183, 213, 0.5));
+  animation: float 3s ease-in-out infinite;
 }
 
 .spirit:hover {
-  transform: scale(1.1);
+  transform: scale(1.15) rotate(5deg);
+  filter: drop-shadow(0 8px 20px rgba(255, 107, 107, 0.6));
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
 
 .footer {
   margin-top: 20px;
   font-size: clamp(0.8rem, 2vw, 1rem);
-  color: #6c757d;
-  border-top: 1px solid rgba(192, 45, 40, 0.3);
+  color: var(--text-color);
+  border-top: 1px solid rgba(255, 183, 213, 0.5);
   padding-top: 15px;
   width: 80%;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
+}
+
+.footer::before {
+  content: "•ᴗ•";
+  display: block;
+  margin-bottom: 5px;
+  color: var(--cute-pink);
+  font-size: 1rem;
 }
 
 /* Traditional Chinese decorative elements */
 .chinese-border {
   position: relative;
   margin: 20px auto;
-  padding: clamp(10px, 3vw, 20px);
+  padding: clamp(15px, 3vw, 25px);
   width: 90%;
   max-width: 500px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 18px;
 }
 
 .chinese-border::before {
@@ -159,9 +223,13 @@ h1::before, h1::after {
   left: 0;
   right: 0;
   bottom: 0;
-  border: 2px solid var(--secondary-color);
-  border-radius: 5px;
+  border: 3px solid var(--cute-pink);
+  border-radius: 18px;
+  background: linear-gradient(135deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 183, 213, 0.1) 100%);
   z-index: -1;
+  box-shadow: inset 0 0 10px rgba(255, 183, 213, 0.3);
 }
 
 /* Chinese style decoration */
@@ -175,14 +243,25 @@ h1::before, h1::after {
   font-size: clamp(0.9rem, 2.5vw, 1.2rem);
   color: var(--text-color);
   margin: 15px auto;
-  padding: 5px 10px;
-  background-color: rgba(229, 200, 132, 0.2);
+  padding: 8px 15px;
+  background-color: rgba(255, 183, 213, 0.15);
   border-radius: 20px;
   display: inline-block;
+  border: 1px dashed var(--cute-pink);
+  position: relative;
+}
+
+.instruction::before,
+.instruction::after {
+  content: '✧';
+  display: inline-block;
+  color: var(--primary-color);
+  margin: 0 5px;
+  font-size: 0.9em;
 }
 
 .decoration::before, .decoration::after {
-  content: "〰️";
+  content: "🌸";
   color: var(--primary-color);
   font-size: clamp(1rem, 3vw, 1.5rem);
   margin: 0 10px;
@@ -208,5 +287,75 @@ h1::before, h1::after {
 @media screen and (min-width: 1200px) {
   .container {
     max-width: 1000px;
+  }
+}
+
+/* Additional cute elements */
+.container {
+  position: relative;
+}
+
+/* Bubble animations in background */
+.bubble {
+  position: fixed;
+  background-color: rgba(255, 183, 213, 0.2);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+  animation: rise 15s linear infinite;
+  opacity: 0;
+}
+
+.bubble:nth-child(1) {
+  width: 40px;
+  height: 40px;
+  bottom: -40px;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.bubble:nth-child(2) {
+  width: 20px;
+  height: 20px;
+  bottom: -20px;
+  left: 20%;
+  animation-delay: 2s;
+}
+
+.bubble:nth-child(3) {
+  width: 30px;
+  height: 30px;
+  bottom: -30px;
+  left: 80%;
+  animation-delay: 4s;
+}
+
+.bubble:nth-child(4) {
+  width: 50px;
+  height: 50px;
+  bottom: -50px;
+  left: 40%;
+  animation-delay: 6s;
+}
+
+.bubble:nth-child(5) {
+  width: 35px;
+  height: 35px;
+  bottom: -35px;
+  left: 65%;
+  animation-delay: 8s;
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) rotate(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
   }
 }
