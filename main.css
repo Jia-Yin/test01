@@ -1,63 +1,118 @@
+/* Chinese-styled RWD CSS */
+:root {
+  --primary-color: #c02d28;
+  --secondary-color: #e5c884;
+  --bg-color: #f9f3e5;
+  --text-color: #333333;
+  --border-color: #c02d28;
+  --accent-color: #497649;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  font-family: "Microsoft YaHei", "SimSun", sans-serif;
-  background-color: #e8f4e5;
-  color: #5a4534;
+  font-family: "Microsoft YaHei", "SimSun", "STKaiti", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   text-align: center;
   margin: 0;
-  padding: 20px;
-  background-image: url('https://i.imgur.com/tDQR4fJ.png');
+  padding: 10px;
+  background-image: url('https://i.imgur.com/DGTxWxR.jpg');
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
 }
 
 h1 {
-  font-size: 2.2rem;
-  color: #4e6c50;
-  margin-bottom: 30px;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  color: var(--primary-color);
+  margin-bottom: 20px;
   font-weight: normal;
   position: relative;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
 h1::after {
   content: '';
   display: block;
-  width: 60%;
+  width: 80%;
+  max-width: 300px;
   height: 2px;
-  background-color: #88a65e;
+  background-color: var(--primary-color);
   margin: 15px auto 0;
+}
+
+h1::before, h1::after {
+  content: "❖";
+  display: inline-block;
+  position: relative;
+  top: -0.5rem;
+  font-size: 1rem;
+  color: var(--primary-color);
+  margin: 0 15px;
 }
 
 .container {
   background-color: rgba(255, 255, 255, 0.92);
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  padding: 30px;
-  max-width: 600px;
-  margin: 40px auto;
-  border: 2px solid #88a65e;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  padding: clamp(15px, 5vw, 40px);
+  width: 90%;
+  max-width: 800px;
+  margin: clamp(10px, 5vh, 40px) auto;
+  border: 2px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--secondary-color), var(--primary-color), var(--secondary-color));
 }
 
 #demo-area-01-show {
   display: block;
-  font-size: 1.8rem;
-  padding: 20px;
+  font-size: clamp(1.2rem, 4vw, 1.8rem);
+  padding: clamp(10px, 3vw, 20px);
   background-color: #fafafa;
-  border: 2px solid #88a65e;
+  border: 2px solid var(--border-color);
   border-radius: 10px;
   margin: 20px auto;
   min-height: 30px;
-  min-width: 200px;
+  width: 90%;
+  max-width: 400px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+#demo-area-01-show::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--secondary-color), transparent);
 }
 
 .bingo {
-  color: #e76f51;
-  font-size: 2.5rem;
+  color: var(--primary-color);
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
   font-weight: bold;
   animation: pulse 1.5s infinite;
-  text-shadow: 0 0 5px rgba(231, 111, 81, 0.3);
+  text-shadow: 0 0 5px rgba(192, 45, 40, 0.3);
 }
 
 @keyframes pulse {
@@ -67,22 +122,34 @@ h1::after {
 }
 
 .spirit {
-  max-width: 100px;
+  width: clamp(60px, 15vw, 120px);
   margin: 10px auto;
   opacity: 0.9;
+  transition: transform 0.3s ease;
+}
+
+.spirit:hover {
+  transform: scale(1.1);
 }
 
 .footer {
   margin-top: 20px;
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 2vw, 1rem);
   color: #6c757d;
+  border-top: 1px solid rgba(192, 45, 40, 0.3);
+  padding-top: 15px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Traditional Chinese decorative elements */
 .chinese-border {
   position: relative;
   margin: 20px auto;
-  padding: 20px;
+  padding: clamp(10px, 3vw, 20px);
+  width: 90%;
+  max-width: 500px;
 }
 
 .chinese-border::before {
@@ -92,7 +159,54 @@ h1::after {
   left: 0;
   right: 0;
   bottom: 0;
-  border: 2px solid #d4a76a;
+  border: 2px solid var(--secondary-color);
   border-radius: 5px;
   z-index: -1;
+}
+
+/* Chinese style decoration */
+.decoration {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.instruction {
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  color: var(--text-color);
+  margin: 15px auto;
+  padding: 5px 10px;
+  background-color: rgba(229, 200, 132, 0.2);
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.decoration::before, .decoration::after {
+  content: "〰️";
+  color: var(--primary-color);
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  margin: 0 10px;
+}
+
+/* Media Queries for responsive design */
+@media screen and (max-width: 600px) {
+  body {
+    padding: 5px;
+  }
+
+  .container {
+    padding: 15px;
+    width: 95%;
+    margin: 10px auto;
+  }
+
+  h1::before, h1::after {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: 1000px;
+  }
 }
