@@ -28,16 +28,16 @@
   <div class="container">
     <div class="decoration">❖</div>
     <h1>王老師的 RFID 試驗場</h1>
-    <img src="https://i.imgur.com/BbfdeV6.png" alt="Spirit" class="spirit">
+    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=default" alt="Spirit" class="spirit" id="rfid-avatar">
     <p class="instruction">✧ 請將您的 RFID 卡片放置在感應區 ✧</p>
     <div class="chinese-border">
       <span id="demo-area-01-show">等待讀取...</span>
     </div>
     <div class="decoration">❖</div>
     <div class="footer">© 2025 王老師 RFID 實驗室</div>
-  </div>  <script>
-    // Check for the special code
+  </div>  <script>    // Check for the special code
     const demoArea = document.getElementById('demo-area-01-show');
+    const rfidAvatar = document.getElementById('rfid-avatar');
     let bingoTimeoutId = null;
     let idleTimeoutId = null;
     let hasNavigated = false;
@@ -67,10 +67,12 @@
     const observer = new MutationObserver(function(mutations) {
       mutations.forEach(function(mutation) {
         const currentText = demoArea.textContent.trim();
-
-        if (currentText === '3AFA5717') {
+          if (currentText === '3AFA5717') {
           // Reset navigation flag when a new card is detected
           hasNavigated = false;
+
+          // Update avatar with the RFID UID as seed
+          rfidAvatar.src = `https://api.dicebear.com/7.x/avataaars/svg?seed=${currentText}`;
 
           // Show BINGO
           demoArea.textContent = 'BINGO!';
@@ -97,11 +99,13 @@
           // Restart idle timer if we're showing system messages
           if (currentText === '等待讀取...' || currentText === '此卡無法通行') {
             startIdleTimer();
-          }
-        } else {
+          }        } else {
           // This is a new card that isn't the special one
           // Store the original RFID value
           const rfidValue = currentText;
+
+          // Update avatar with the RFID UID as seed
+          rfidAvatar.src = `https://api.dicebear.com/7.x/avataaars/svg?seed=${rfidValue}`;
 
           // Clear any existing timeout when text changes
           if (bingoTimeoutId) {
