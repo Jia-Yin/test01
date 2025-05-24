@@ -134,6 +134,11 @@ h1::before, h1::after {
   color: transparent;
 }
 
+.denied {
+  color: #777;
+  font-size: clamp(1.2rem, 4vw, 1.6rem);
+}
+
 .flash {
   animation: flash 0.4s infinite alternate;
   z-index: 10;
