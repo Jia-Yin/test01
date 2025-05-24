@@ -1,35 +1,54 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
+<!doctype html>
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Webduino Blockly Demo 01</title>
+  <script src="https://blocklypro.webduino.io/node_modules/jquery/dist/jquery.min.js?rev=2f6b11a7e914718e0290410e85366fe9"></script>
+  <script src="https://blocklypro.webduino.io/dist/lib/webduino-all-0.4.20.min.js?rev=4426739c00d85325cb2d3d701fa50666"></script>
+  <script src="https://blocklypro.webduino.io/dist/webduino-blockly.min.js?rev=a58c17a279091d8dc64355122211c460"></script>
+  <script src="https://blocklypro.webduino.io/dist/lib/firebase.min.js?rev=c0bfd493efd477d098a4ae9e92b13880"></script>
+  <script src="https://blocklypro.webduino.io/dist/lib/runtime.min.js?rev=683a69503433786202911b4d9f766100"></script>
+  <script src="https://blocklypro.webduino.io/node_modules/webduino-module-rfid/RFID.js"></script>
+  <script src="https://blocklypro.webduino.io/node_modules/webduino-module-rfid/RFID-blockly.js"></script>
+  <script src="main.js"></script>
+  <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
-    <div id="app">
-        <h1>{{ message }}</h1>
-        <button @click="changeMessage">點我改變訊息</button>
-    </div>
+  <div class="container">
+    <h1>王老師的 RFID 試驗場</h1>
+    <img src="https://i.imgur.com/BbfdeV6.png" alt="Spirit" class="spirit">
+    <div><span id="demo-area-01-show">等待讀取...</span></div>
+    <div class="footer">© 2025 RFID Lab</div>
+  </div>
 
-    <script>
-        const {
-            createApp
-        } = Vue;
+  <script>
+    // Check for the special code
+    const demoArea = document.getElementById('demo-area-01-show');
 
-        createApp({
-            data() {
-                return {
-                    message: "Hello Vue!"
-                };
-            },
-            methods: {
-                changeMessage() {
-                    this.message = "訊息已改變！";
-                }
-            }
-        }).mount("#app");
-    </script>
+    // Create a MutationObserver to watch for changes in the text content
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (demoArea.textContent.trim() === '3AFA5717') {
+          demoArea.textContent = 'BINGO!';
+          demoArea.classList.add('bingo');
+        } else if (demoArea.textContent.trim() === 'BINGO!') {
+          // Keep the bingo styling
+        } else {
+          demoArea.classList.remove('bingo');
+        }
+      });
+    });
+
+    // Start observing the demo area for changes
+    observer.observe(demoArea, {
+      childList: true,
+      characterData: true,
+      subtree: true
+    });
+  </script>
 </body>
 
 </html>

@@ -1,0 +1,98 @@
+body {
+  font-family: "Microsoft YaHei", "SimSun", sans-serif;
+  background-color: #e8f4e5;
+  color: #5a4534;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+  background-image: url('https://i.imgur.com/tDQR4fJ.png');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+h1 {
+  font-size: 2.2rem;
+  color: #4e6c50;
+  margin-bottom: 30px;
+  font-weight: normal;
+  position: relative;
+}
+
+h1::after {
+  content: '';
+  display: block;
+  width: 60%;
+  height: 2px;
+  background-color: #88a65e;
+  margin: 15px auto 0;
+}
+
+.container {
+  background-color: rgba(255, 255, 255, 0.92);
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 30px;
+  max-width: 600px;
+  margin: 40px auto;
+  border: 2px solid #88a65e;
+}
+
+#demo-area-01-show {
+  display: block;
+  font-size: 1.8rem;
+  padding: 20px;
+  background-color: #fafafa;
+  border: 2px solid #88a65e;
+  border-radius: 10px;
+  margin: 20px auto;
+  min-height: 30px;
+  min-width: 200px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.bingo {
+  color: #e76f51;
+  font-size: 2.5rem;
+  font-weight: bold;
+  animation: pulse 1.5s infinite;
+  text-shadow: 0 0 5px rgba(231, 111, 81, 0.3);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.spirit {
+  max-width: 100px;
+  margin: 10px auto;
+  opacity: 0.9;
+}
+
+.footer {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+/* Traditional Chinese decorative elements */
+.chinese-border {
+  position: relative;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.chinese-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid #d4a76a;
+  border-radius: 5px;
+  z-index: -1;
+}
